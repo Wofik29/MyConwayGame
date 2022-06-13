@@ -1,10 +1,21 @@
 import {Cell} from "./cell";
 import {BotStates} from "./bot";
 
+export type WorldInfo = {
+  cycle: number;
+  dynamicBlocks: number;
+  stepTime: number;
+};
 
 export class World {
   width: number;
   height: number;
+  info: WorldInfo = {
+    cycle: 0,
+    dynamicBlocks: 0,
+    stepTime: 0
+  };
+
 
   map: Cell[][];
 
@@ -27,6 +38,7 @@ export class World {
   }
 
   step() {
+    const start = performance.now();
 
     let map: Cell[][] = []
     for (let x = 0; x < this.width; x++) {
@@ -47,7 +59,7 @@ export class World {
         let directions = ['getBottom', 'getTop', 'getRight', 'getLeft', 'getRightTop', 'getLeftTop', 'getRightDown', 'getLeftDown'];
         for (let direction in directions) {
           let value = directions[direction]
-          neighborAlive += cell[value]()?._bot.isAlive() ? 1 : 0
+          neighborAlive += cell[value]()?.bot.isAlive() ? 1 : 0
         }
 
         switch (bot.state) {
@@ -64,12 +76,13 @@ export class World {
       }
     }
     this.map = map;
-
+    this.info.cycle++
+    this.info.stepTime = Math.round(performance.now() - start);
   }
 
   generateAdam() {
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 7000; i++) {
       let x = Math.round(Math.random() * (this.width - 1));
       let y = Math.round(Math.random() * (this.height - 1));
 

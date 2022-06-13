@@ -3,13 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Test</title>
+
+  <style>
+    .info {
+      padding: 4px;
+      margin: 10px;
+      border: 1px solid rgb(20, 20, 20);
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .world {
+      border-radius: 5px;
+      border: 2px solid rgb(20, 20, 20);
+      background-color: rgb(5, 5, 5);
+      transform: translate(0px, 0px)
+    }
+  </style>
 </head>
 <body>
 
 <!--<div id="world"></div>-->
-<canvas id="world" width="1000" height="1000" style="border-radius: 5px; border: 2px solid rgb(20, 20, 20); background-color:rgb(5,5,5); transform: translate(0px, 0px)"></canvas>
+<div style="display: flex">
+  <canvas id="world" width="1000" height="1000" class="world"></canvas>
 
+  <div class="info">
+    <div>Время шага: <span id="stepTime"></span></div>
+    <div>Цикл: <span id="worldCycle"></span></div>
+  </div>
 
-<script  type="module" src="./index.ts"></script>
+</div>
+<script type="module" src="./index.ts"></script>
 </body>
 </html>

@@ -1,12 +1,12 @@
 import {World} from "./world";
 import {Web} from "./web";
 
-const world = new World(100, 100);
+const world = new World(200, 200);
 world.run();
 const web = new Web(world)
 web.redraw()
 
-let timeout = 500
+let timeout = 50
 let i = 0
 function circle() {
 
@@ -14,13 +14,11 @@ function circle() {
   web.redraw()
 
   setTimeout(() => {
-    console.log('step')
     circle()
   }, timeout)
 
 }
 
 setTimeout(() => {
-  console.log('step')
   circle()
 }, timeout)

@@ -11,8 +11,14 @@ export class Web {
   protected width: number = 1000
   protected cellSize: number = 10;
 
+  protected stepTime: HTMLSpanElement
+  protected worldCycle: HTMLSpanElement
+
   constructor(world: World) {
     let canvas = document.getElementById('world') as HTMLCanvasElement;
+    this.stepTime = document.getElementById('stepTime') as HTMLSpanElement;
+    this.worldCycle = document.getElementById('worldCycle') as HTMLSpanElement;
+
     //
     let context = canvas!.getContext("2d")
     canvas.height = this.height
@@ -70,6 +76,8 @@ export class Web {
   }
 
   redraw() {
+    this.stepTime.innerText = String(this.world.info.stepTime) + ' msec'
+    this.worldCycle.innerText = String(this.world.info.cycle)
     this.drawGrid()
   }
 }
