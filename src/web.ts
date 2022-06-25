@@ -1,5 +1,5 @@
-import {World} from "./world";
-import {BotStates} from "./bot";
+import {World} from "./core/world";
+import {BotStates, MAX_ENERGY} from "./core/bot";
 
 
 export class Web {
@@ -7,8 +7,8 @@ export class Web {
   protected context: CanvasRenderingContext2D
   protected paint: boolean = true
   protected world: World
-  protected height: number = 1000
-  protected width: number = 1000
+  protected height: number = 800
+  protected width: number = 800
   protected cellSize: number = 10;
 
   protected stepTime: HTMLSpanElement
@@ -51,12 +51,15 @@ export class Web {
         for (let y = 0; y < this.world.height; y++) {
           const cell = this.world.map[x][y]
           if (cell) {
+            let isAlive = cell.bot.state == BotStates.ALIVE
+
+            let energyColor = (255 / MAX_ENERGY) * cell.bot.energy
 
             // двумерная картинка это плоский массив пикселей, последовательность из 4х - состовляющие одного пикселя
             // Поэтому делаем смещение на 4 каждый раз
             const POINTER = (x * this.world.height + y) * 4;
             data.data[POINTER] = 0 // red
-            data.data[POINTER + 1] = cell.bot?.state == BotStates.ALIVE ? 250 : 0 // green;
+            data.data[POINTER + 1] = isAlive ? energyColor : 0 // green;
             data.data[POINTER + 2] = 0// blue;
             data.data[POINTER + 3] = 255 // alpha;
           }

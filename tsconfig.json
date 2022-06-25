@@ -31,6 +31,8 @@
   "exclude": [
     ".git",
     "node_modules",
+    "./build/**/*", // This is what fixed it!
+    "./dist/**/*", // This is what fixed it!
     "**/*-spec.ts"
   ]
 }
