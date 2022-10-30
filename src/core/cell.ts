@@ -36,7 +36,12 @@ export class Cell {
   }
 
   step() {
-    this.bot.step()
+    if (this.bot.isAlive())
+      this.bot.step()
+  }
+
+  existBot() {
+    return this.bot && this.bot?.isAlive();
   }
 
   clone(): Cell {
@@ -48,6 +53,11 @@ export class Cell {
 
   getByDirection(direction: Coords) {
     // const direction = Directions[directionName] as number[]
+
+    // console.log('----')
+    // console.log(direction)
+    // console.log(this.coords)
+
     return this.world.map?.[this.coords[0] + direction[0]]?.[this.coords[1] + direction[1]];
   }
 

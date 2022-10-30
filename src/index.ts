@@ -1,12 +1,12 @@
 import {World} from "./core/world";
 import {Web} from "./web";
 
-const world = new World(200, 200);
+const world = new World(50, 50);
 world.run();
 const web = new Web(world)
 web.redraw()
 
-let timeout = 50
+let timeout = 75
 
 function circle() {
 

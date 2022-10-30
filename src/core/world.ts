@@ -75,7 +75,7 @@ export class World {
 
   generateAdam() {
 
-    for (let i = 0; i < 7000; i++) {
+    for (let i = 0; i < 1000; i++) {
       let x = Math.round(Math.random() * (this.width - 1));
       let y = Math.round(Math.random() * (this.height - 1));
 
